@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <h1>Profile Info</h1>
+    <div class="container">
+        <div class="avatar">
+            <div class="avatar-image">
+                <img src="data/profilePictures/id1.png" alt="Avatar" style="width:200px">  <!-- REPLACE data.id1 HERE NEED THIS VIA LOGIN-->
+            </div>
+            <button id="changePFP">Change Profile Picture</button>
+        </div>
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><span id="nameDisplay"></span></td>
+                <td><button id="editName">Edit</button></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><span id="emailDisplay"></span></td>
+                <td><button id="editEmail">Edit</button></td>
+            </tr>
+            <tr>
+                <td>School:</td>
+                <td><span id="schoolDisplay"></span></td>
+                <td><button id="editSchool">Edit</button></td>
+            </tr>
+            <tr>
+                <td>Date of Birth:</td>
+                <td><span id="dobDisplay"></span></td>
+                <td><button id="editDOB">Edit</button></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><span id="passwordDisplay"></span></td>
+                <td><button id="editPassword">Edit</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        const listEl = document.querySelector('table');
+        fetch('data/users.json')
+            .then(res => res.json())
+            .then(data => {
+                const user = data.id1[0]; // REPLACE data.id1 HERE NEED THIS VIA LOGIN
+                document.getElementById('nameDisplay').textContent = user.Name;
+                document.getElementById('emailDisplay').textContent = user.Email;
+                document.getElementById('schoolDisplay').textContent = user.School;
+                document.getElementById('dobDisplay').textContent = user.DOB;
+                document.getElementById('passwordDisplay').textContent = user.Password;
+            });
+    </script>
+</body>
+</html>
+
+<style>
+    .container {
+         display: flex;
+          align-items: center;
+    }
+    .avatar {
+        width: 200px;
+        text-align: center; 
+        border-right: 1px solid black;
+        padding-right: 20px;
+    }
+    .avatar-image {
+        display: inline-block; 
+    }
+    .avatar button {
+        display: block; 
+        margin: 10px auto; 
+    }
+</style>
